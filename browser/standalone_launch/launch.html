@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Static Template</title>
-        <script src="https://combinatronics.com/smart-on-fhir/client-js/master/build/fhir-client.js"></script>
+        <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
     </head>
     <body>
         <script>
@@ -13,7 +13,7 @@
 
                 // The client_id that you should have obtained after registering a client at
                 // the EHR.
-                clientId: "my_web_app",
+                clientId: "3ab1d54f-b004-48fd-a1b6-eeae73d8858e",
 
                 // The scopes that you request from the EHR
                 scope: [
@@ -21,7 +21,14 @@
                     "launch/patient",   // Get the current patient in standalone launch mode
                     "launch/encounter", // Get the current encounter in standalone launch mode
                     "openid fhirUser",  // Get the current user
-                    "patient/*.read"    // Read patient data
+                    "patient/*.read",    // Read patient data
+                    
+                    'online_access', 
+                    'profile'
+                    //'patient/Patient.read', 
+                    //'patient/Observation.read',
+                    
+
                  ].join(" "),
 
                 // Having this option means that it makes a standalone launch. This is to make

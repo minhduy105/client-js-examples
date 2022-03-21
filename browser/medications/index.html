@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/build/fhir-client.js"></script>
+    <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
     <script src="../app.js"></script>
   </head>
   <body>
@@ -26,7 +26,7 @@
 
       FHIR.oauth2.init({
         // The client_id that you should have obtained after registering a client at the EHR.
-        clientId: "my_web_app",
+        clientId: "3ab1d54f-b004-48fd-a1b6-eeae73d8858e",
 
         // The scopes that you request from the EHR
         scope: [
@@ -72,6 +72,25 @@
       
       // Render any errors
       .catch(render);
+      
+      FHIR.oauth2.authorize({
+        'client_id': "3ab1d54f-b004-48fd-a1b6-eeae73d8858e",
+        'scope':  'patient/Patient.read patient/Observation.read launch online_access openid profile'
+      });
+
+      extractData().then(
+        //Display Patient Demographics and Observations if extractData was success
+        function(p) {
+          drawVisualization(p);
+        },
+
+        //Display 'Failed to call FHIR Service' if extractData failed
+        function() {
+          $('#errors').html('<p> Failed to call FHIR Service </p>');
+        }
+      );
+
+
     </script>
   </body>
 </html>
